@@ -1,0 +1,46 @@
+App\Entity\Location:
+    properties:
+        city:
+            - NotBlank: { groups: ['create','edit'] }
+            - Length: { max: 255, groups: ['create','edit'] }
+
+        country:
+            - NotBlank: { groups: ['create','edit'] }
+            - Choice:
+                  choices: ['PL','DE','FR','ES','IT','GB','US']
+                  groups: ['create','edit']
+
+        latitude:
+            - NotNull: { groups: ['create','edit'] }
+            - Range: { min: -90, max: 90, groups: ['create','edit'] }
+
+        longitude:
+            - NotNull: { groups: ['create','edit'] }
+            - Range: { min: -180, max: 180, groups: ['create','edit'] }
+
+
+App\Entity\Measurement:
+    properties:
+        date:
+            - NotBlank: { groups: ['create','edit'] }
+
+        time:
+            - NotBlank: { groups: ['create','edit'] }
+
+        temperatureC:
+            - Range: { min: -50, max: 60, groups: ['create','edit'] }
+
+        windSpeed:
+            - Range: { min: 0, max: 200, groups: ['create','edit'] }
+
+        humidity:
+            - Range: { min: 0, max: 100, groups: ['create','edit'] }
+
+        pressure:
+            - Range: { min: 800, max: 1100, groups: ['create','edit'] }
+
+        precipitation:
+            - Range: { min: 0, max: 500, groups: ['create','edit'] }
+
+        location:
+            - NotNull: { groups: ['create','edit'] }
